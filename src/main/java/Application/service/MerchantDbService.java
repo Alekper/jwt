@@ -6,13 +6,17 @@ import Application.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Email;
 import java.util.Optional;
+import java.util.Properties;
 
 @Service
 public class MerchantDbService {
+
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -48,7 +52,7 @@ public class MerchantDbService {
         String token = jwtUtil.generateToken(merchant.getEmail());
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("super-boy-2021@mail.ru");
+        mailMessage.setFrom("superbooy2020@gmail.com");
         mailMessage.setTo(merchant.getEmail());
         mailMessage.setSubject("Confirmation");
         mailMessage.setText(
@@ -59,7 +63,7 @@ public class MerchantDbService {
                         "\nPhone Number: " + merchant.getPhone() +
                         "\nEmail address: " + merchant.getEmail() +
                         "\nTo confirm your account please follow the link: " +
-                        "\nhttp://localhost:9000/confirm/" + token);
+                        "\nhttp://localhost:8888/confirm/" + token);
 
         merchant.setToken(token);
         javaMailSender.send(mailMessage);

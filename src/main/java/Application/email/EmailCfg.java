@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
+
 public class EmailCfg {
 
     @Getter
@@ -27,5 +28,6 @@ public class EmailCfg {
     @Setter
     @org.springframework.beans.factory.annotation.Value("${spring.mail.password}")
     private String password;
+
 
 }
